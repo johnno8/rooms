@@ -36,8 +36,7 @@ server.register([Vision, Inert, Bell, AuthCookie], (err) => {
     provider: 'google',
     password: process.env.BELL_PASSWORD,
     clientId: process.env.GOOGLE_CLIENT_ID,
-    // clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    clientSecret: '1Op5I-R8PAbYtflI5yYWMC5M',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     // forceHttps: true,
     // location: process.env.BELL_LOCATION,
     isSecure: false
