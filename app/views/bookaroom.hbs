@@ -1,0 +1,111 @@
+<!--{{> menu _id="bookaroom"}}-->
+{{#if isAdmin}}
+  {{> adminMenu }}
+{{else}}
+  {{> menu }}
+{{/if}}
+
+<section class="ui raised segment">
+  <div class="ui grid">
+    <div class="ui four wide column">
+      <img src="images/nf1.jpg" class="ui centered medium image">
+    </div>
+    <div class="ui eight wide column">
+      <div class="ui basic padded segment">
+        <h2 class="ui blue header">{{ displayDate date}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="ui grid">
+    <div class="ui five wide column">
+    </div>
+    <div class="ui seven wide column fluid form">
+      <form class="ui fluid form" action="/makebooking" method="POST">
+        <h3 class="ui header">{{ formatRoomName roomId }}</h3>
+        <label><strong>Start time</strong></label>
+        <div class="ui selection dropdown starthour">
+          <input type="hidden" name="starthour">
+          <i class="dropdown icon"></i>
+          <div class="default text">Hour</div>
+          <div class="menu">
+            <div class="item" data-value="9">9</div>
+            <div class="item" data-value="10">10</div>
+            <div class="item" data-value="11">11</div>
+            <div class="item" data-value="12">12</div>
+            <div class="item" data-value="13">13</div>
+            <div class="item" data-value="14">14</div>
+            <div class="item" data-value="15">15</div>
+            <div class="item" data-value="16">16</div>
+            <div class="item" data-value="17">17</div>
+          </div>
+        </div>
+        <div class="ui selection dropdown startmin">
+          <input type="hidden" name="startmin">
+          <i class="dropdown icon"></i>
+          <div class="default text">Mins</div>
+          <div class="menu">
+            <div class="item" data-value="00">00</div>
+            <div class="item" data-value="30">30</div>
+          </div>
+        </div>
+        <br><br>
+        <label><strong>End time&nbsp&nbsp&nbsp</strong></label>
+        <div class="ui selection dropdown endhour">
+          <input type="hidden" name="endhour">
+          <i class="dropdown icon"></i>
+          <div class="default text">Hour</div>
+          <div class="menu">
+            <div class="item" data-value="9">9</div>
+            <div class="item" data-value="10">10</div>
+            <div class="item" data-value="11">11</div>
+            <div class="item" data-value="12">12</div>
+            <div class="item" data-value="13">13</div>
+            <div class="item" data-value="14">14</div>
+            <div class="item" data-value="15">15</div>
+            <div class="item" data-value="16">16</div>
+            <div class="item" data-value="17">17</div>
+            <div class="item" data-value="18">18</div>
+          </div>
+        </div>
+        <div class="ui selection dropdown endmin">
+          <input type="hidden" name="endmin">
+          <i class="dropdown icon"></i>
+          <div class="default text">Mins</div>
+          <div class="menu">
+            <div class="item" data-value="00">00</div>
+            <div class="item" data-value="30">30</div>
+          </div>
+        </div>
+        <br><br>
+        <div class="two fields">
+          <div class="field">
+            <label>Meeting Type</label>
+            <div class="ui selection dropdown type">
+              <input type="hidden" name="type">
+              <i class="dropdown icon"></i>
+              <div class="default text">Type</div>
+              <div class="menu">
+                <div class="item" data-value="Internal">Internal</div>
+                <div class="item" data-value="External">External</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea rows="2" placeholder="what's the meeting about?" name="description"></textarea>
+        </div>
+        <input type="hidden" name="room" value="{{roomId}}">
+        <input type="hidden" name="date" value="{{date}}">
+        <button class="ui blue submit button">Reserve the room</button>
+      </form>
+      {{> formerror }}
+    </div>
+  </div>
+</section>
+<script>$('.ui.selection.dropdown.starthour').dropdown()</script>
+<script>$('.ui.selection.dropdown.startmin').dropdown()</script>
+<script>$('.ui.selection.dropdown.endhour').dropdown()</script>
+<script>$('.ui.selection.dropdown.endmin').dropdown()</script>
+<script>$('.ui.selection.dropdown.type').dropdown()</script>

@@ -1,0 +1,57 @@
+<!--{{> menu }}-->
+{{#if isAdmin}}
+  {{> adminMenu }}
+{{else}}
+  {{> menu }}
+{{/if}}
+
+<section class="ui raised segment">
+  <div class="ui grid">
+    <div class="ui four wide column">
+      <img src="images/nf1.jpg" class="ui centered medium image">
+    </div>
+    <div class="ui eight wide column">
+      <div class="ui basic padded segment">
+        <h2 class="ui blue header">{{ displayDate date }}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="ui grid">
+    <div class="ui two wide column">
+      <!--<img src="images/nf1.jpg" class="ui centered medium image">-->
+    </div>
+    <div class="ui twelve wide column">
+      <h2 class="ui blue header"> {{room.name}} </h2>
+      <h3>Room No. {{room.id}} <br> Capacity {{room.capacity}}</h3>
+      <table class="ui celled blue table segment">
+        <thead>
+        <tr>
+          <th class="two wide"> Booked </th>
+          <th class="two wide"> Meeting Type </th>
+          <th class="four wide"> Owner </th>
+          <th class="six wide"> Description </th>
+          <th class="two wide"> Action </th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each room.Bookings}}
+          <tr>
+            <td>{{ formatBookingTime this }}</td>
+            <td>{{type}}</td>
+            <td>{{owner}}</td>
+            <td>{{description}}</td>
+            <td>
+              {{{ ifOwner ../user ../room.id ../date this }}}
+              <!--<form action="/delete/{{id}}" method="POST">-->
+                <!--<input type="hidden" name="room" value="{{../room.id}}">-->
+                <!--<input type="hidden" name="date" value="{{../date}}">-->
+                <!--<button class="ui fluid submit button">Delete</button>-->
+              <!--</form>-->
+            </td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

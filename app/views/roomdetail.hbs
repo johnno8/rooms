@@ -1,0 +1,38 @@
+{{> adminMenu }}
+
+<section class="ui raised segment">
+  <div class="ui grid">
+    <div class="ui four wide column">
+      <img src="images/nf1.jpg" class="ui centered medium image">
+    </div>
+    <div class="ui eight wide column">
+      <div class="ui basic padded segment">
+        <h2 class="ui blue header">{{ displayDate date }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui two column centered grid">
+    <div class="column">
+      <div class="ui fluid form segment">
+        <form action="/editroom" method="POST">
+          <h3 class="ui header">Edit {{ room.name }} details</h3>
+          <input type="hidden" name="id" value="{{ room.id }}">
+          <div class="two fields">
+            <div class="field">
+              <label>Room Name</label>
+              <input value="{{room.name}}" type="text" name="name">
+            </div>
+            <div class="field">
+              <label>Capacity</label>
+              <input value="{{room.capacity}}" type="text" name="capacity">
+            </div>
+          </div>
+          <button class="ui blue submit button">Save</button>
+        </form>
+        {{> successmsg }}
+      </div>
+    </div>
+  </div>
+
+</section>

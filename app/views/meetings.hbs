@@ -1,0 +1,95 @@
+{{#if isAdmin}}
+  {{> adminMenu }}
+{{else}}
+  {{> menu }}
+{{/if}}
+
+
+<section class="ui raised segment">
+  <div class="ui grid">
+    <div class="ui four wide column">
+      <img src="images/nf1.jpg" class="ui centered medium image">
+    </div>
+    <div class="ui eight wide column">
+      <div class="ui basic padded segment">
+        <h2 class="ui blue header">{{ displayDate date }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui grid">
+    <div class="ui one wide column">
+    </div>
+    {{{ formatBookingDisplay bookedRooms }}}
+  </div>
+
+  <div class="ui grid">
+    <div class="ui two wide column">
+    </div>
+      <div class="ui six wide column">
+        <form class="ui fluid form segment booktoday" action="/booktoday" method="POST">
+          <div class="field">
+            <input type="hidden" name="date" value="{{date}}">
+            <div class="ui fluid selection dropdown booktoday">
+              <input type="hidden" name="room">
+              <i class="dropdown icon"></i>
+              <div class="default text">Select a Room</div>
+              <div class="menu">
+                {{#each rooms}}
+                  <div class="item" data-value="{{this.id}}">
+                    {{this.name}}
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          <div class="form actions">
+            <button class="ui fluid blue submit button">Book a room for today</button>
+            <div class="ui error message"></div>
+          </div>
+        </form>
+        {{> formerror }}
+      </div>
+
+      <div class="ui six wide column">
+        <form class="ui fluid form segment showdate" action="/showdate" method="POST">
+          <div class="field">
+            <input placeholder="Booking date in YYYY-MM-DD format" type="date" name="date">
+          </div>
+          <div class="form actions">
+            <button class="ui fluid blue submit button">See bookings for another date</button>
+            <div class="ui error message"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+</section>
+
+<script>$('.ui.selection.dropdown.booktoday').dropdown('clear')</script>
+<script>
+  $('.ui.form.booktoday').form({
+    fields: {
+      room: {
+        identifier: 'room',
+        rules: [{
+          type: 'empty',
+          prompt: 'Please select a room',
+        },],
+      },
+    },
+  })
+</script>
+
+<script>
+  $('.ui.form.showdate').form({
+    fields: {
+      date: {
+        identifier: 'date',
+        rules: [{
+          type: 'empty',
+          prompt: 'Please select a date',
+        },],
+      },
+    },
+  })
+</script>
