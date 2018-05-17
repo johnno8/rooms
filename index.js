@@ -42,10 +42,10 @@ server.register([Vision, Inert, Bell, AuthCookie], (err) => {
     isSecure: false
   }
 
-  if (environment === 'production') {
-    bellAuthOptions.forceHttps = true
-    bellAuthOptions.location = process.env.BELL_LOCATION
-  }
+  // if (environment === 'production') {
+  //   bellAuthOptions.forceHttps = true
+  //   bellAuthOptions.location = process.env.BELL_LOCATION
+  // }
 
   server.auth.strategy('google', 'bell', bellAuthOptions)
 
