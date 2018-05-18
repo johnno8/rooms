@@ -24,7 +24,7 @@ exports.login = {
   auth: 'google',
 
   handler: (request, reply) => {
-    if (request.auth.isAuthenticated && request.auth.credentials.profile.email === 'john.okeeffe@nearform.com') {
+    if (request.auth.isAuthenticated && request.auth.credentials.profile.email === 'jokeeffe09@gmail.com') {
       request.cookieAuth.set({
         profile: request.auth.credentials.profile,
         isAdmin: true,
