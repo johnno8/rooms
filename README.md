@@ -9,7 +9,8 @@ The app uses OAuth2 with Google, so a valid Gmail account is required to log in.
 
 ### Pre-requisites
 The application was developed on a Mac using Docker. To install Docker go to https://docs.docker.com/docker-for-windows/install or https://docs.docker.com/docker-for-mac/install/
-Clone the repo:
+
+### Clone the repo
 
 ```sh
 $ git clone https://github.com/johnno8/rooms.git
