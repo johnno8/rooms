@@ -33,6 +33,7 @@ if (process.env.DATABASE_URL) {
     protocol: 'postgres',
     // port:     match[4],
     // host:     match[3],
+    host: 'https://quiet-harbor-88541.herokuapp.com/',
     // logging:  true //false
     dialectOptions: {
       ssl: true
