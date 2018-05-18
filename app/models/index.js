@@ -26,9 +26,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, pr
     idle: 10000
   }
 }) */
+let sequelize
 if (process.env.DATABASE_URL) {
   console.log('inside if (process.env.DATABASE_URL)')
-  const sequelize = new Sequelize(process.env.DATABASE_URL/*, {
+  sequelize = new Sequelize(process.env.DATABASE_URL/*, {
     dialect:  'postgres',
     protocol: 'postgres',
     // port:     match[4],
@@ -40,7 +41,7 @@ if (process.env.DATABASE_URL) {
   }*/)
 } else {
   console.log('inside if (process.env.DATABASE_URL) else')
-  const sequelize = new Sequelize(config.pg.name, config.pg.user, config.pg.password, {
+  sequelize = new Sequelize(config.pg.name, config.pg.user, config.pg.password, {
     host: config.pg.host,
     dialect: config.pg.dialect,
     pool: config.pg.pool
