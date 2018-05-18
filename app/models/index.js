@@ -28,17 +28,16 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, pr
 }) */
 if (process.env.DATABASE_URL) {
   console.log('inside if (process.env.DATABASE_URL)')
-  const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  const sequelize = new Sequelize(process.env.DATABASE_URL/*, {
     dialect:  'postgres',
     protocol: 'postgres',
     // port:     match[4],
     // host:     match[3],
-    host: 'https://quiet-harbor-88541.herokuapp.com/',
     // logging:  true //false
     dialectOptions: {
       ssl: true
     }
-  })
+  }*/)
 } else {
   console.log('inside if (process.env.DATABASE_URL) else')
   const sequelize = new Sequelize(config.pg.name, config.pg.user, config.pg.password, {
