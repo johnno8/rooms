@@ -7,38 +7,11 @@ const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
 const config = require('../../config')
-// var env       = process.env.NODE_ENV || "development";
-// var config    = require(__dirname + '/../config/config.json')[env];
 
-// const sequelize = new Sequelize('testdb', 'postgres', 'rG6RdDHW', {
-// const sequelize = new Sequelize('meeting-room-db', 'postgres', 'postgres', {
-// const sequelize = new Sequelize('roomschedulerdb', 'rsMasterUser', 'oryxforecabin', {
-
-/*
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
-  host: process.env.PG_HOST || 'localhost',
-  // dialect: 'mysql' | 'mariadb' | 'sqlite' | 'postgres' | 'mssql',
-  dialect: 'postgres',
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
-}) */
 let sequelize
 if (process.env.DATABASE_URL) {
   console.log('inside if (process.env.DATABASE_URL)')
-  sequelize = new Sequelize(process.env.DATABASE_URL/*, {
-    dialect:  'postgres',
-    protocol: 'postgres',
-    // port:     match[4],
-    // host:     match[3],
-    // logging:  true //false
-    dialectOptions: {
-      ssl: true
-    }
-  }*/)
+  sequelize = new Sequelize(process.env.DATABASE_URL)
 } else {
   console.log('inside if (process.env.DATABASE_URL) else')
   sequelize = new Sequelize(config.pg.name, config.pg.user, config.pg.password, {
