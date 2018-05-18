@@ -1,6 +1,3 @@
-/**
- * Created by johnokeeffe on 10/03/2017.
- */
 'use strict'
 
 const models = require('../models')
@@ -19,12 +16,12 @@ exports.home = {
     let date = utils.getDate()
     utils.getMeetings(date, (err, roomData) => {
       if (err) console.log(err)
-      console.log('getMeetings() roomData: ' + JSON.stringify(roomData, null, 2))
-      reply.view('meetings', {
+      // console.log('getMeetings() roomData: ' + JSON.stringify(roomData, null, 2))
+      // console.log('complete room array with bookings: ' + JSON.stringify(roomData.returnedRooms, null, 2))
+      reply.view('meetings-table', {
         date: date,
         title: 'Scheduled meetings',
-        bookedRooms: roomData.bookedRooms,
-        rooms: roomData.returnedRooms,
+        rooms: roomData,
         isAdmin: request.auth.credentials.isAdmin
       })
     })
@@ -43,11 +40,10 @@ exports.tomorrow = {
     utils.getMeetings(tomorrow, (err, roomData) => {
       if (err) console.log(err)
       console.log('getMeetings() roomData: ' + JSON.stringify(roomData, null, 2))
-      reply.view('meetings', {
+      reply.view('meetings-table', {
         date: tomorrow,
         title: 'Scheduled meetings',
-        bookedRooms: roomData.bookedRooms,
-        rooms: roomData.returnedRooms,
+        rooms: roomData,
         isAdmin: request.auth.credentials.isAdmin
       })
     })
@@ -81,11 +77,10 @@ exports.showdate = {
     utils.getMeetings(date, (err, roomData) => {
       if (err) console.log(err)
       console.log('getMeetings() roomData: ' + JSON.stringify(roomData, null, 2))
-      reply.view('meetings', {
+      reply.view('meetings-table', {
         date: date,
         title: 'Scheduled meetings',
-        bookedRooms: roomData.bookedRooms,
-        rooms: roomData.returnedRooms,
+        rooms: roomData,
         isAdmin: request.auth.credentials.isAdmin
       })
     })
@@ -248,11 +243,10 @@ exports.makebooking = {
                   utils.getMeetings(d, (err, roomData) => {
                     if (err) console.log(err)
                     console.log('getMeetings() roomData: ' + JSON.stringify(roomData, null, 2))
-                    reply.view('meetings', {
+                    reply.view('meetings-table', {
                       date: d,
                       title: 'Scheduled meetings',
-                      bookedRooms: roomData.bookedRooms,
-                      rooms: roomData.returnedRooms,
+                      rooms: roomData,
                       isAdmin: request.auth.credentials.isAdmin
                     })
                   })
@@ -292,7 +286,6 @@ exports.makebooking = {
             start: dstr + ' ' + startstr,
             end: dstr + ' ' + endstr,
             type: data.type,
-            // owner: request.auth.credentials.email,
             owner: request.auth.credentials.profile.email,
             description: data.description,
             RoomId: data.room
@@ -300,11 +293,10 @@ exports.makebooking = {
             utils.getMeetings(d, (err, roomData) => {
               if (err) console.log(err)
               console.log('getMeetings() roomData: ' + JSON.stringify(roomData, null, 2))
-              reply.view('meetings', {
+              reply.view('meetings-table', {
                 date: d,
                 title: 'Scheduled meetings',
-                bookedRooms: roomData.bookedRooms,
-                rooms: roomData.returnedRooms,
+                rooms: roomData,
                 isAdmin: request.auth.credentials.isAdmin
               })
             })
